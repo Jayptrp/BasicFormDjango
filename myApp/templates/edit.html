@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block body %}
+style="margin:auto;width:50%;padding: 10px;"
+{% endblock %}
+
+{% block title %}
+<title>Edit</title>
+{% endblock %}
+
+{% block bodyDiv %}
+<div>
+    <h2>Edit your infomation.</h2>
+    <form method="post" action=""> <!-- why action blank?? -->
+        {% csrf_token %}
+        <div class="mb-3">
+          <label for="name" class="form-label" >FullName</label>
+          <input type="text" class="form-control" name="name" value="{{name}}">
+        </div>
+        <div class="mb-3">
+          <label for="number" class="form-label">Number</label>
+          <input type="number" class="form-control" aria-describedby="emailHelp" name="number" value="{{number}}">
+          <div id="emailHelp" class="form-text">Any number you like :)</div>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+</div>
+{% endblock %}

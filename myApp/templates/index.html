@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block body %}
+{% endblock %}
+
+{% block title %}
+<title>Home</title>
+{% endblock %}
+
+{% block bodyDiv %}
+<div class="container">
+  <h1 class="mt-5">Here is all data from myDatabase. You can add more in the form page.</h1>
+  <table class="table mt-5">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">name</th>
+          <th scope="col">number</th>
+          <th scope="col">date added</th>
+          <th scope="col">change</th>
+          <th scope="col">delete</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for item in db %}
+        <tr>
+          <th scope="row">{{item.id}}</th>
+          <td>{{item.name}}</td>
+              {% if item.number < 12345 %}
+              <td class="table-danger"> {{item.number}}
+              {% elif item.number < 123456 %}
+              <td class="table-warning"> {{item.number}}
+              {% else %}
+              <td class="table-success"> {{item.number}}
+              {% endif %}
+              </td>
+          <td>{{item.date}}</td>
+          <td><a href="/edit/{{item.id}}" class="btn btn-warning">Change</a></td>
+          <td><a href="/delete/{{item.id}}" class="btn btn-danger" onclick="return confirm('Do you want to delete {{item.name}} ?')">Delete</a></td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+</div>
+{% endblock %}
